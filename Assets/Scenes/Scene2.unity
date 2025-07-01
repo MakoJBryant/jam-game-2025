@@ -998,7 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a8131b492df1d4a82a3f648e272457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clampDistance: 3
+  clampDistance: 1
   lerpSpeed: 3
 --- !u!1 &2128607621
 GameObject:
