@@ -5,11 +5,20 @@ public class JumpPad : MonoBehaviour
     [Range(500, 2500)]
     [SerializeField] private int jumpForce;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private Rigidbody2D rb;
+
+    private void Start()
     {
-        if (collision.gameObject.TryGetComponent<Rigidbody2D>(out var rb))
-        {
-            rb.AddForceY(jumpForce, ForceMode2D.Force);
-        }
+        rb = GM.Instance.playerTransform.gameObject.GetComponent<Rigidbody2D>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        rb.AddForceY(jumpForce, ForceMode2D.Force);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        rb.AddForceY(jumpForce, ForceMode2D.Force);
     }
 }

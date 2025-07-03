@@ -7,9 +7,17 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [Range(1, 20)]
     [SerializeField] private int jumpForce;
+    private bool canJump = true;
 
     private Rigidbody2D rb;
     private Vector3 movementDirection;
+
+    private bool IsGrounded()
+    {
+        float yPos = transform.position.y - transform.localScale.y / 2 - .01f; // Places the raycast position just below the character
+        Vector2 pos = new(transform.position.x, yPos);
+        return Physics2D.Raycast(pos, Vector2.down, .1f); // Checks if grounded
+    }
 
     private void Start()
     {
@@ -33,9 +41,15 @@ public class Player_Movement : MonoBehaviour
 
     public void Jump()
     {
-        float yPos = transform.position.y - transform.localScale.y / 2 - .01f; // Places the raycast position just below the character
-        Vector2 pos = new(transform.position.x, yPos);
-        if (Physics2D.Raycast(pos, Vector2.down, .1f)) // Checks if grounded
-            rb.AddForceY(10, ForceMode2D.Impulse); // Jump if true
+        if (IsGrounded() && canJump)
+        {
+            rb.AddForceY(jumpForce, ForceMode2D.Impulse); // Jump if true
+            canJump = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        canJump = true;
     }
 }
