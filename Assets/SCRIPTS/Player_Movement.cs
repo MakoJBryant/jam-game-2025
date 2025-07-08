@@ -14,6 +14,8 @@ public class Player_Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 movementDirection;
 
+    private Animator anim;
+
     private bool IsGrounded()
     {
         transform.SetParent(null);
@@ -35,6 +37,7 @@ public class Player_Movement : MonoBehaviour
     private void AssignComponents()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     public void InputMovement(Vector2 input)
@@ -51,6 +54,7 @@ public class Player_Movement : MonoBehaviour
             DrawDust();
             rb.AddForceY(jumpForce, ForceMode2D.Impulse); // Jump if true
             canJump = false;
+            anim.SetTrigger("Jump");
         }
     }
 

@@ -20,7 +20,7 @@ public class Input_Controls : MonoBehaviour
         player.controls.Character.Move.performed += ctx => player.movement.InputMovement(ctx.ReadValue<Vector2>());
         player.controls.Character.Move.canceled += ctx => player.movement.InputMovement(Vector2.zero);
 
-        // player.controls.Character.Jump.performed += ctx => player.movement.Jump();
+        player.controls.Character.Jump.performed += ctx => player.movement.Jump();
     }
 
     private void Update()

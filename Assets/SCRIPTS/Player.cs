@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     public InputActions controls;
     public Player_Movement movement;
+    public Animator animator;
 
     private void Awake()
     {
