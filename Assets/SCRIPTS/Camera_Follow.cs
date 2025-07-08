@@ -14,7 +14,7 @@ public class Camera_Follow : MonoBehaviour
     private void Update()
     {
         Vector3 playerPos = GM.Instance.playerTransform.position;
-        if (Mathf.Abs(transform.position.x - playerPos.x) > xClampDistance)
+        if (Mathf.Abs(transform.position.x - playerPos.x) > xClampDistance) // Clamps camera movement
         {
             Vector3 newPos = transform.position;
             newPos.x = Mathf.Lerp(transform.position.x, playerPos.x, lerpSpeed * Time.deltaTime);
@@ -26,7 +26,7 @@ public class Camera_Follow : MonoBehaviour
         {
             Vector3 newPos = transform.position;
             newPos.y = Mathf.Lerp(yPos, playerPos.y, lerpSpeed * Time.deltaTime);
-            if (newPos.y < 0)
+            if (newPos.y < 0) // Makes camera not go below offset/0
                 newPos.y = 0;
             newPos.y += yOffset; // Add offset
             transform.position = newPos;
