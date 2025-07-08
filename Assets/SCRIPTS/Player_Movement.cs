@@ -18,9 +18,11 @@ public class Player_Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
+        Transform parent = transform.parent;
         transform.SetParent(null);
         float yPos = transform.position.y - transform.localScale.y / 2 - .01f; // Places the raycast position just below the character
         Vector2 pos = new(transform.position.x, yPos);
+        transform.parent = parent;
         return Physics2D.Raycast(pos, Vector2.down, .1f); // Checks if grounded
     }
 
