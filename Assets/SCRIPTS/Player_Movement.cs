@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player_Movement : MonoBehaviour
 {
+    public ParticleSystem dustPlayer;
+
     [Range(1, 10)]
     [SerializeField] private float movementSpeed;
     [Range(1, 20)]
@@ -36,6 +38,8 @@ public class Player_Movement : MonoBehaviour
 
     public void InputMovement(Vector2 input)
     {
+        if(IsGrounded())
+            DrawDust();
         movementDirection.x = input.x;
     }
 
@@ -43,6 +47,7 @@ public class Player_Movement : MonoBehaviour
     {
         if (IsGrounded() && canJump)
         {
+            DrawDust();
             rb.AddForceY(jumpForce, ForceMode2D.Impulse); // Jump if true
             canJump = false;
         }
@@ -51,5 +56,10 @@ public class Player_Movement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         canJump = true;
+    }
+
+    void DrawDust()
+    {
+        dustPlayer.Play();
     }
 }
