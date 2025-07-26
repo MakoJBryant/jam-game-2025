@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Coin
+  - Figbar
+  - EndPoint
+  - GrowPad
+  - ShrinkPad
+  - KillZone
+  - MovingPlatform
+  - StartPoint
+  - JumpPad
   layers:
   - Default
   - TransparentFX
